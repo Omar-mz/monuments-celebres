@@ -1,32 +1,77 @@
-/* General styles for the navigation */
+/* Container & Base */
 nav {
-  background-color: #333; /* Dark background */
-  padding: 10px 0; /* Vertical padding for the nav */
-  text-align: center; /* Center the nav items */
+  background: linear-gradient(90deg, #222, #444);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-ul {
-  
-    list-style-type: none; /* Remove default list bullet points */
+/* Logo/Brand */
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Navigation List */
+.nav-list {
+  display: flex;
+  gap: 1.5rem;         /* Easy spacing between items */
+  list-style: none;    /* No bullets */
   margin: 0;
   padding: 0;
 }
-
-ul li {
-  display: inline; /* Display list items horizontally */
-  margin-right: 20px; /* Space between items */
+.nav-list li a {
+  display: block;             /* For full padding click area */
+  padding: 0.75rem 1rem;
+  color: #fff;
+  text-transform: uppercase;  /* Optional stylistic touch */
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  transition: transform 0.2s ease, background 0.3s ease;
 }
 
-ul li a {
-  text-decoration: none; /* Remove underline from links */
-  color: #fff; /* White text color */
-  font-size: 16px; /* Font size for the links */
-  padding: 10px 20px; /* Padding around the links */
-  border-radius: 5px; /* Rounded corners for the links */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+/* Hover & Active States */
+.nav-list li a:hover,
+.nav-list li a.active {
+  background: #555;
+  transform: translateY(-2px);
 }
 
-ul li a:hover {
-  background-color: #555; /* Change background on hover */
+/* Responsive Toggle (mobile) */
+.nav-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav-toggle {
+    display: block;
+    margin-left: auto;
+  }
+  .nav-list {
+    flex-direction: column;
+    gap: 0;
+    display: none;           /* hide by default on mobile */
+  }
+  .nav-list.open {
+    display: flex;           /* toggle via JS */
+  }
+  .nav-list li a {
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+}
